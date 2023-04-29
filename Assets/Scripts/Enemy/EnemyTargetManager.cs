@@ -16,7 +16,7 @@ public class EnemyTargetManager : Singleton<EnemyTargetManager>
 
     public void RemoveEnemyTarget(IEnemyTarget enemyTarget) 
     {
-        if (EnemyTargets.Contains(enemyTarget))
+        if (!EnemyTargets.Contains(enemyTarget))
             return;
 
         EnemyTargets.Remove(enemyTarget);

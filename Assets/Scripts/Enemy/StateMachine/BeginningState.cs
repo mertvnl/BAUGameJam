@@ -16,7 +16,13 @@ public class BeginningState : EnemyStateBase
         StateMachine.EnemyAnimator.Idle();
         yield return CHASING_WAIT;
 
-        StateMachine.SetState(new ChasingState(StateMachine));
-        yield break;
+        while (IsActive) 
+        {
+            IEnemyTarget target = EnemyTargetManager.Instance.GetClosestEnemyTarget(StateMachine.transform.position);
+            yield return new WaitUntil(() => target != null);
+            
+            StateMachine.SetState(new ChasingState(StateMachine));
+            yield return null;
+        }
     }
 }

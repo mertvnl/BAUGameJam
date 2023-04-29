@@ -8,7 +8,7 @@ public class AttackingState : EnemyStateBase
     private EnemyData EnemyData => StateMachine.Enemy.EnemyData;
     private float AttackRange => StateMachine.Enemy.EnemyData.AttackRange;
 
-    private const float INITIAL_DELAY = 0.25f;
+    private const float INITIAL_DELAY = 0.1f;
 
     private float _lastHitTime;
 
@@ -36,7 +36,7 @@ public class AttackingState : EnemyStateBase
                 yield break;
             }
 
-            Attack(target);
+            Attack(target);        
             yield return null;
         }      
     }
