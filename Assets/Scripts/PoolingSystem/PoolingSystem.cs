@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectPooler : MonoBehaviour
+public class PoolingSystem : Singleton<PoolingSystem>
 {
     private Dictionary<string, Stack<GameObject>> _poolStacksByID = new Dictionary<string, Stack<GameObject>>();
     public Dictionary<string, Stack<GameObject>> PoolStacksByID { get => _poolStacksByID; private set => _poolStacksByID = value; }
