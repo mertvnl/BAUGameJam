@@ -13,10 +13,10 @@ public class BeginningState : EnemyStateBase
 
     public override IEnumerator EnterState()
     {
+        StateMachine.EnemyAnimator.Idle();
         yield return CHASING_WAIT;
 
         StateMachine.SetState(new ChasingState(StateMachine));
-
         yield break;
     }
 }

@@ -14,6 +14,8 @@ public class ChasingState : EnemyStateBase
 
     public override IEnumerator EnterState()
     {
+        StateMachine.EnemyAnimator.Walk();
+
         while(IsActive) 
         {
             IEnemyTarget target = EnemyTargetManager.Instance.GetClosestEnemyTarget(StateMachine.transform.position);
@@ -30,6 +32,7 @@ public class ChasingState : EnemyStateBase
                 yield break;
             }
 
+            StateMachine.Enemy.SetTarget(target);
             Movement(target);
 
             yield return null;

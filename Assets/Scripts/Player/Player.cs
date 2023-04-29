@@ -24,7 +24,7 @@ public class Player : MonoBehaviour, IEnemyTarget
 
     }
 
-    public void Hit()
+    public void Hit(int damage)
     {
         
     }

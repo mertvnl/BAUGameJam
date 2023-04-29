@@ -5,7 +5,9 @@ using UnityEngine;
 public class AttackingState : EnemyStateBase
 {
     private Vector3 CurrentPosition => StateMachine.transform.position;
+    private EnemyData EnemyData => StateMachine.Enemy.EnemyData;
     private float AttackRange => StateMachine.Enemy.EnemyData.AttackRange;
+    private float _lastHitTime;
 
     public AttackingState(EnemyStateMachine stateMachine) : base(stateMachine)
     {
@@ -29,8 +31,17 @@ public class AttackingState : EnemyStateBase
                 yield break;
             }
 
-
+            Attack(target);
             yield return null;
         }      
+    }
+
+    private void Attack(IEnemyTarget target) 
+    {
+        if (Time.time < _lastHitTime + EnemyData.AttackCooldown)
+            return;
+
+        _lastHitTime = Time.time;
+        StateMachine.EnemyAnimator.Attack(() => target.Hit(EnemyData.Damage));
     }
 }
