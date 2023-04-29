@@ -7,6 +7,9 @@ public class SoundManager : Singleton<SoundManager>
     public AudioSource EffectsSource;
     public AudioSource MusicSource;
 
+	
+	
+
 	// Random pitch adjustment range.
 	public float LowPitchRange = .95f;
 	public float HighPitchRange = 1.05f;
