@@ -4,6 +4,8 @@ using UnityEngine;
 
 public abstract class EnemyBase : MonoBehaviour, IEnemy
 {
+    private Rigidbody _rigidbody;
+    public Rigidbody Rigidbody => _rigidbody == null ? _rigidbody = GetComponentInParent<Rigidbody>() : _rigidbody;
     public bool IsAlive { get; private set; }
     public EnemyData EnemyData { get; private set; }    
     public Transform T => transform;

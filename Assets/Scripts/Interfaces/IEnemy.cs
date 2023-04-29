@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IEnemy : IDamageable
 {
-    //Marker Interface
+    bool IsAlive { get; }
 }
