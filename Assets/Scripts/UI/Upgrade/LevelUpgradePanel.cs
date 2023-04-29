@@ -18,6 +18,16 @@ public class LevelUpgradePanel : FadePanelBase
         CreateRandomUpgrades();
     }
 
+    private void OnEnable()
+    {
+        UpgradeManager.Instance.OnStatUpgraded.AddListener((x) => HidePanelWithFade(0.25f));
+    }
+
+    private void OnDisable()
+    {
+        UpgradeManager.Instance.OnStatUpgraded.RemoveListener((x) => HidePanelWithFade(0.25f));
+    }
+
     private void Initialize()
     {
         foreach (UpgradeData upgrade in UpgradeManager.Instance.LevelUpgrades)
