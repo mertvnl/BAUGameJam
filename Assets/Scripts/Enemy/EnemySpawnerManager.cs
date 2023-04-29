@@ -7,7 +7,7 @@ public class EnemySpawnerManager : Singleton<EnemySpawnerManager>
     public float LastSpawnTime { get; private set; }
     public List<IEnemySpawner> Spawners { get; private set; } = new();
 
-    public const float SPAWN_DELAY = 0.2f; //TODO: Connect to level data.
+    public const float SPAWN_DELAY = 1f; //TODO: Connect to level data.
 
     public void AddSpawner(IEnemySpawner spawner) 
     {
@@ -42,6 +42,6 @@ public class EnemySpawnerManager : Singleton<EnemySpawnerManager>
         Spawners.Shuffle();
 
         IEnemySpawner spawner = Spawners[0];
-        spawner.Spawn();
+        spawner.StartSpawn();
     }
 }

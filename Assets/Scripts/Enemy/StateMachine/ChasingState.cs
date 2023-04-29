@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ChasingState : EnemyStateBase
 {
-    private Rigidbody Rigidbody => StateMachine.Enemy.Rigidbody;
+    private Rigidbody2D Rigidbody => StateMachine.Enemy.Rigidbody;
     private Vector3 CurrentPosition => StateMachine.transform.position;
 
     private const float ATTACKING_RANGE = 2f; //TO DO: Change logic to Upgrades    
@@ -39,7 +39,7 @@ public class ChasingState : EnemyStateBase
 
     private void Movement(IEnemyTarget enemyTarget) 
     {
-        Vector3 direction = (enemyTarget.T.position - CurrentPosition).normalized;
+        Vector2 direction = (enemyTarget.T.position - CurrentPosition).normalized;
         Rigidbody.MovePosition(StateMachine.Enemy.EnemyData.MovementSpeed * Time.fixedDeltaTime * direction + Rigidbody.position);
     }
 }
