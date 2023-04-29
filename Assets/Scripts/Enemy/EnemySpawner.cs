@@ -48,9 +48,10 @@ public class EnemySpawner : MonoBehaviour, IEnemySpawner
 
     private void MarkerTween(Action onComplete = null) 
     {
-        SetMarketAlpha(1);
         DOTween.Kill(_marketTweenID);
-        spawnMarker.DOFade(0, MARKET_TWEEN_LOOP_DURATION).SetLoops(MARKER_TWEEN_LOOP_COUNT, LoopType.Yoyo).OnComplete(() => onComplete?.Invoke());
+        Sequence markerSequence = DOTween.Sequence();
+        markerSequence.Append(spawnMarker.DOFade(0, MARKET_TWEEN_LOOP_DURATION).SetLoops(MARKER_TWEEN_LOOP_COUNT, LoopType.Yoyo).SetId(_marketTweenID))
+        .Append(spawnMarker.DOFade(0, MARKET_TWEEN_LOOP_DURATION).SetLoops(MARKER_TWEEN_LOOP_COUNT, LoopType.Yoyo).SetId(_marketTweenID).OnComplete(() => onComplete?.Invoke())).SetId(_marketTweenID);
     }
 
     private void SetMarketAlpha(float alpha) 

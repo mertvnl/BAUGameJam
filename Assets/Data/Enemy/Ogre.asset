@@ -16,4 +16,5 @@ MonoBehaviour:
   MovementSpeed: 5
   Experience: 5
   AttackRange: 1
-  EnemyPrefab: {fileID: 0}
+  EnemyPrefab: {fileID: 3914344423101159486, guid: 868e255a41b587543be8073c66dae2bc,
+    type: 3}

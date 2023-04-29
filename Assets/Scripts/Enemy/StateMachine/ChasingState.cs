@@ -6,8 +6,7 @@ public class ChasingState : EnemyStateBase
 {
     private Rigidbody2D Rigidbody => StateMachine.Enemy.Rigidbody;
     private Vector3 CurrentPosition => StateMachine.transform.position;
-
-    private const float ATTACKING_RANGE = 2f; //TO DO: Change logic to Upgrades    
+    private float AttackRange => StateMachine.Enemy.EnemyData.AttackRange;
 
     public ChasingState(EnemyStateMachine stateMachine) : base(stateMachine)
     {
@@ -25,7 +24,7 @@ public class ChasingState : EnemyStateBase
             }
 
             float distance = Vector3.Distance(target.T.position, CurrentPosition);
-            if (distance < ATTACKING_RANGE) 
+            if (distance <= AttackRange) 
             {
                 StateMachine.SetState(new AttackingState(StateMachine));
                 yield break;
