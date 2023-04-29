@@ -13,7 +13,7 @@ public class EnemySpawner : MonoBehaviour, IEnemySpawner
     
     private const float SPAWN_DURATION = 1.25f; //TODO: Make it generic
     private const int MARKER_TWEEN_LOOP_COUNT = 4;
-    private const float MARKET_TWEEN_LOOP_DURATION = SPAWN_DURATION / MARKER_TWEEN_LOOP_COUNT;
+    private const float MARKET_TWEEN_LOOP_DURATION = SPAWN_DURATION / (MARKER_TWEEN_LOOP_COUNT - 1);
 
     private int _marketTweenID;
 
@@ -50,8 +50,8 @@ public class EnemySpawner : MonoBehaviour, IEnemySpawner
     {
         DOTween.Kill(_marketTweenID);
         Sequence markerSequence = DOTween.Sequence();
-        markerSequence.Append(spawnMarker.DOFade(0, MARKET_TWEEN_LOOP_DURATION).SetLoops(MARKER_TWEEN_LOOP_COUNT, LoopType.Yoyo).SetId(_marketTweenID))
-        .Append(spawnMarker.DOFade(0, MARKET_TWEEN_LOOP_DURATION).SetLoops(MARKER_TWEEN_LOOP_COUNT, LoopType.Yoyo).SetId(_marketTweenID).OnComplete(() => onComplete?.Invoke())).SetId(_marketTweenID);
+        markerSequence.Append(spawnMarker.DOFade(1, MARKET_TWEEN_LOOP_DURATION).SetLoops(MARKER_TWEEN_LOOP_COUNT, LoopType.Yoyo).SetId(_marketTweenID))
+        .Append(spawnMarker.DOFade(0, MARKET_TWEEN_LOOP_DURATION).SetLoops(MARKER_TWEEN_LOOP_COUNT, LoopType.Yoyo).SetEase(Ease.InOutSine).SetId(_marketTweenID).OnComplete(() => onComplete?.Invoke())).SetId(_marketTweenID);
     }
 
     private void SetMarketAlpha(float alpha) 

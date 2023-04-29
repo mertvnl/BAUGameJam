@@ -18,7 +18,22 @@ public class EnemyStateMachine : MonoBehaviour
         StartCoroutine(CurrentState.EnterState());       
     }
 
+    private void OnEnable()
+    {
+        EventManager.OnLevelFailed.AddListener(OnLevelFailed);
+    }
+
+    private void OnDisable()
+    {
+        EventManager.OnLevelFailed.RemoveListener(OnLevelFailed);
+    }
+
     private void Start()
+    {
+        SetState(new BeginningState(this));
+    }
+
+    private void OnLevelFailed() 
     {
         SetState(new BeginningState(this));
     }

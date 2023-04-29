@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerFacingController : MonoBehaviour
 {
+    private Player _player;
+    private Player Player => _player == null ? _player = GetComponent<Player>() : _player;
+
     private PlayerInput _playerInput;
     private PlayerInput PlayerInput => _playerInput == null ? _playerInput = GetComponent<PlayerInput>() : _playerInput;
 
@@ -16,6 +19,9 @@ public class PlayerFacingController : MonoBehaviour
 
     private void CheckFacing()
     {
+        if (!Player.IsControlable)
+            return;
+
         float direction = PlayerInput.InputXY.x;
         switch (direction)
         {

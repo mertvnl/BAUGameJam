@@ -31,6 +31,7 @@ public class Enemy : MonoBehaviour, IEnemy
 
     private void Die() 
     {
+        IsAlive = false;
         EnemyManager.Instance.RemoveEnemy(this);    
     }
 }

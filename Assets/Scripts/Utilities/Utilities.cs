@@ -14,4 +14,10 @@ public static class Utilities
             list[randomIndex] = value;
         }
     }
+
+    public static float Remap(float value, float fromMin, float fromMax, float toMin, float toMax) 
+    {
+        float percentange = Mathf.InverseLerp(fromMin, fromMax, value);
+        return Mathf.Lerp(toMin, toMax, percentange);
+    }
 }

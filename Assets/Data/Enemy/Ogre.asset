@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Ogre
   m_EditorClassIdentifier: 
   MaxHealth: 10
-  Damage: 0
-  MovementSpeed: 5
+  Damage: 3
+  MovementSpeed: 2
   Experience: 5
   AttackRange: 1
-  AttackCooldown: 0
+  AttackCooldown: 2
   EnemyPrefab: {fileID: 4791382461671495164, guid: d0590cdf761f55c4584e25f970d59e98,
     type: 3}
