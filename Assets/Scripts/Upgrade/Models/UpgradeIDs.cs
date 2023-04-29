@@ -5,5 +5,6 @@ public enum UpgradeType
     HPRegeneration = 20,
     AttackSpeed = 30,
     AttackRange = 40,
-    MovementSpeed = 50
+    MovementSpeed = 50,
+    AttackDamage = 60
 }
