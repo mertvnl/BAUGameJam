@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class EnemyBase : MonoBehaviour, IEnemy
+public class Enemy : MonoBehaviour, IEnemy
 {
     private Rigidbody _rigidbody;
     public Rigidbody Rigidbody => _rigidbody == null ? _rigidbody = GetComponentInParent<Rigidbody>() : _rigidbody;
@@ -10,19 +10,19 @@ public abstract class EnemyBase : MonoBehaviour, IEnemy
     public EnemyData EnemyData { get; private set; }    
     public Transform T => transform;
 
-    public virtual void Initialize(EnemyData enemyData) 
+    public void Initialize(EnemyData enemyData) 
     {
         IsAlive = true;
         EnemyData = enemyData;
         EnemyManager.Instance.AddEnemy(this);
     }
 
-    public virtual void Hit()
+    public void Hit()
     {
         //TODO: Hit logic
     }  
 
-    protected virtual void Die() 
+    private void Die() 
     {
         EnemyManager.Instance.RemoveEnemy(this);    
     }

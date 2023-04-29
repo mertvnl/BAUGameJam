@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EnemyStateMachine : MonoBehaviour
 {
-    private EnemyBase _enemy;
-    public EnemyBase Enemy => _enemy == null ? _enemy = GetComponentInParent<EnemyBase>() : _enemy;
+    private Enemy _enemy;
+    public Enemy Enemy => _enemy == null ? _enemy = GetComponentInParent<Enemy>() : _enemy;
 
     public EnemyStateBase CurrentState { get; private set; }
 
