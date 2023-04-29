@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyTargetManager : MonoBehaviour
+public class EnemyTargetManager : Singleton<EnemyTargetManager>
 {
-    public static EnemyTargetManager Instance = null;
     public List<IEnemyTarget> EnemyTargets { get; private set; } = new();
 
     public void AddEnemyTarget(IEnemyTarget enemyTarget) 
@@ -42,10 +41,5 @@ public class EnemyTargetManager : MonoBehaviour
         }
 
         return closestTarget;
-    }
-
-    private void Awake()
-    {
-        Instance = this;
     }
 }

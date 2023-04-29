@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyStateMachine : MonoBehaviour
 {
     private EnemyBase _enemy;
-    private EnemyBase Enemy => _enemy == null ? _enemy = GetComponentInParent<EnemyBase>() : _enemy;
+    public EnemyBase Enemy => _enemy == null ? _enemy = GetComponentInParent<EnemyBase>() : _enemy;
 
     public EnemyStateBase CurrentState { get; private set; }
 
