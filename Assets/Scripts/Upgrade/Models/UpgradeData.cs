@@ -19,10 +19,10 @@ public class UpgradeData : ScriptableObject
         return PlayerPrefs.GetInt(UpgradeType.ToString(), DefaultUpgradeValue);
     }
 
-    public void UpgradeValue(int valueToAdd)
+    public void IncreaseValue(int valueToAdd)
     {
         PlayerPrefs.SetInt(UpgradeType.ToString(), GetCurrentValue() + valueToAdd);
-        //UpgradeManager.Instance.OnStatUpgraded.Invoke();
+        UpgradeManager.Instance.OnStatUpgraded.Invoke(this);
     }
 
     public void ResetValue()
