@@ -19,7 +19,7 @@ public class StatIndicator : MonoBehaviour
         UpgradeManager.Instance.OnStatUpgraded.RemoveListener(UpdateTexts);
     }
 
-    public void Init(UpgradeData upgradeData)
+    public void Initialize(UpgradeData upgradeData)
     {
         _upgradeData = upgradeData;
         UpdateTexts(upgradeData);

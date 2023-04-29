@@ -10,7 +10,7 @@ public class UpgradeManager : Singleton<UpgradeManager>
     [field: SerializeField] public List<UpgradeData> LevelUpgrades { get; private set; } = new();
     [field: SerializeField] public List<UpgradeData> MoneyUpgrades { get; private set; } = new();
 
-    public UnityEvent<UpgradeData> OnStatUpgraded = new();
+    [HideInInspector] public UnityEvent<UpgradeData> OnStatUpgraded = new();
 
     public UpgradeData GetUpgradeByType(UpgradeType upgradeType)
     {
