@@ -17,7 +17,7 @@ public class AttackingState : EnemyStateBase
     {
         while(IsActive) 
         {
-            IEnemyTarget target = EnemyTargetManager.Instance.GetClosestEnemyTarget(StateMachine.transform.position);
+            IEnemyTarget target = StateMachine.Enemy.LastTarget;
             if (target == null)
             {
                 StateMachine.SetState(new IdleState(StateMachine));
