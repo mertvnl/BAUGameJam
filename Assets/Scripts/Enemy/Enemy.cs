@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Enemy : MonoBehaviour, IEnemy
 {
     private Rigidbody2D _rigidbody;
     public Rigidbody2D Rigidbody => _rigidbody == null ? _rigidbody = GetComponentInParent<Rigidbody2D>() : _rigidbody;
-    public bool IsAlive { get; private set; }
-    public EnemyData EnemyData { get; private set; }    
     public Transform T => transform;
+    public bool IsAlive { get; private set; }
+    public EnemyData EnemyData { get; private set; }
+    public IEnemyTarget LastTarget { get; private set; } = null;
 
     public void Initialize(EnemyData enemyData) 
     {
@@ -17,10 +19,15 @@ public class Enemy : MonoBehaviour, IEnemy
         EnemyManager.Instance.AddEnemy(this);
     }
 
-    public void Hit()
+    public void Hit(int damage)
     {
         //TODO: Hit logic
     }  
+
+    public void SetTarget(IEnemyTarget target) 
+    {
+        LastTarget = target;
+    }
 
     private void Die() 
     {

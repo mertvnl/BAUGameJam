@@ -6,8 +6,10 @@ using UnityEngine;
 public class EnemyData : ScriptableObject
 {
     public int MaxHealth;
+    public int Damage;
     public int MovementSpeed;
     public int Experience;
     public int AttackRange;
+    public float AttackCooldown;
     public GameObject EnemyPrefab; 
 }

@@ -5,5 +5,5 @@ using UnityEngine;
 public interface IDamageable
 {
     Transform T { get; }
-    void Hit();
+    void Hit(int damage);
 }
