@@ -6,5 +6,5 @@ public interface IDamageable
 {
     bool IsAlive { get; }
     Transform T { get; }
-    void Hit(int damage);
+    void Hit(float damage);
 }

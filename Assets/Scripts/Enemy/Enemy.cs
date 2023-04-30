@@ -28,7 +28,7 @@ public class Enemy : MonoBehaviour, IEnemy
         EnemyManager.Instance.AddEnemy(this);
     }
 
-    public void Hit(int damage)
+    public void Hit(float damage)
     {
         if (!IsAlive)
             return;

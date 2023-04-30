@@ -45,9 +45,17 @@ public class Bullet : MonoBehaviour
             if (disposeRoutine != null)
                 StopCoroutine(disposeRoutine);
 
-            enemy.Hit(_weaponData.Damage);
+            enemy.Hit(GetWeaponDamage());
             Dispose();
         }
+    }
+
+    private float GetWeaponDamage() 
+    {
+        int attackUpgrade = UpgradeManager.Instance.GetUpgradeByType(UpgradeType.AttackDamage).GetCurrentValue();
+        float damageBonus = _weaponData.Damage * attackUpgrade / 100f;
+        float weaponDamage = _weaponData.Damage + damageBonus;
+        return weaponDamage;
     }
 
     private IEnumerator DisposeAfterLifeTime()
