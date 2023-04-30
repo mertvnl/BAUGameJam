@@ -32,6 +32,16 @@ public class Player : MonoBehaviour, IEnemyTarget
     [HideInInspector]
     public UnityEvent OnHealthChanged = new();
 
+    private void OnEnable()
+    {
+        PlayerLevelManager.Instance.OnPlayerLevelUp.AddListener(() => PoolingSystem.Instance.InstantiateFromPool("LevelUp", transform.position + Vector3.down / 2, Quaternion.identity));
+    }
+
+    private void OnDisable()
+    {
+        PlayerLevelManager.Instance.OnPlayerLevelUp.RemoveListener(() => PoolingSystem.Instance.InstantiateFromPool("LevelUp", transform.position + Vector3.down / 2, Quaternion.identity));
+    }
+
     private void Start()
     {
         Initialize();
