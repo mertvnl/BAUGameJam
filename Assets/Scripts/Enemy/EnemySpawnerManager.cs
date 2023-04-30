@@ -6,9 +6,12 @@ public class EnemySpawnerManager : Singleton<EnemySpawnerManager>
 {
     public bool IsActive { get; private set; } = true;
     public float LastSpawnTime { get; private set; }
+    public float CurrentSpawnDelay { get; private set; } = MAX_DELAY;
     public List<IEnemySpawner> Spawners { get; private set; } = new();
 
-    public const float SPAWN_DELAY = 1f; //TODO: Connect to level data.
+    public const float MAX_DELAY = 1f;
+    public const float MIN_DELAY = 0.25f;
+    public const float DECREASE_SPEED = 0.25f;
 
     public void AddSpawner(IEnemySpawner spawner) 
     {
@@ -49,7 +52,7 @@ public class EnemySpawnerManager : Singleton<EnemySpawnerManager>
         if (Spawners.Count == 0)
             return;
 
-        if (Time.time < LastSpawnTime + SPAWN_DELAY)
+        if (Time.time < LastSpawnTime + CurrentSpawnDelay)
             return;
 
         LastSpawnTime = Time.time;
@@ -57,5 +60,8 @@ public class EnemySpawnerManager : Singleton<EnemySpawnerManager>
 
         IEnemySpawner spawner = Spawners[0];
         spawner.StartSpawn();
+
+        CurrentSpawnDelay -= Time.deltaTime * DECREASE_SPEED;
+        CurrentSpawnDelay = Mathf.Max(MIN_DELAY, CurrentSpawnDelay);
     }
 }
