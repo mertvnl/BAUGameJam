@@ -12,6 +12,11 @@ public class UpgradeManager : Singleton<UpgradeManager>
 
     [HideInInspector] public UnityEvent<UpgradeData> OnStatUpgraded = new();
 
+    private void Awake()
+    {
+        ResetAllUpgrades();
+    }
+
     public UpgradeData GetUpgradeByType(UpgradeType upgradeType)
     {
         return Upgrades.FirstOrDefault(x => x.UpgradeType == upgradeType);

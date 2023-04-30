@@ -16,6 +16,11 @@ public class PlayerLevelManager : Singleton<PlayerLevelManager>
     [HideInInspector] public UnityEvent OnPlayerLevelUp = new();
     [HideInInspector] public UnityEvent OnPlayerGainExperience = new();
 
+    private void Awake()
+    {
+        ResetLevel();
+    }
+
     public void IncreaseExperience(float exp)
     {
         CurrentExperience += exp;
@@ -33,5 +38,11 @@ public class PlayerLevelManager : Singleton<PlayerLevelManager>
         PlayerPrefs.SetInt(LEVEL_PREF_ID, CurrentLevel + 1);
         CurrentExperience = 0;
         OnPlayerLevelUp.Invoke();
+    }
+
+    private void ResetLevel()
+    {
+        PlayerPrefs.SetInt(LEVEL_PREF_ID, 1);
+        CurrentExperience = 0;
     }
 }
