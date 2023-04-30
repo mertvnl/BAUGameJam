@@ -83,6 +83,13 @@ MonoBehaviour:
     Prefab: {fileID: 2256272279061796976, guid: c5a291d91ae14ec4c8dcb0f30286b1da,
       type: 3}
     InitialSize: 25
+  - PoolID: EnemyDeath
+    Prefab: {fileID: 193062, guid: 83367c69e65854b52b217ba803566037, type: 3}
+    InitialSize: 10
+  - PoolID: LevelUp
+    Prefab: {fileID: 9158635742410941698, guid: f7832ade54d5b467dac4dd5e954ead09,
+      type: 3}
+    InitialSize: 5
 --- !u!114 &3555412444667812584
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -50,6 +50,7 @@ public class Enemy : MonoBehaviour, IEnemy
         IsAlive = false;
         EnemyManager.Instance.RemoveEnemy(this);
         PlayerLevelManager.Instance.IncreaseExperience(EnemyData.Experience);
+        PoolingSystem.Instance.InstantiateFromPool("EnemyDeath", transform.position, Quaternion.identity);
         OnDie.Invoke();
     }
 }
