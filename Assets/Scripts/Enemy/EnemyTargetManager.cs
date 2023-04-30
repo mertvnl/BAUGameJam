@@ -35,7 +35,7 @@ public class EnemyTargetManager : Singleton<EnemyTargetManager>
             float distance = Vector3.Distance(position, enemy.T.position);
             if (distance < minDistance)
             {
-                distance = minDistance;
+                minDistance = distance;
                 closestTarget = enemy;
             }
         }
