@@ -3,17 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerScale : MonoBehaviour
+public class EnemyScale : MonoBehaviour
 {
-    private Player _player;
-    private Player Player => _player == null ? _player = GetComponent<Player>() : _player; 
+    private Enemy _enemy;
+    private Enemy Enemy => _enemy == null ? _enemy = GetComponent<Enemy>() : _enemy;
 
     [SerializeField] private Transform body;
 
     private const float PUNCH_STRENGTH = 0.2f;
     private const float PUNCH_DURATION = 0.3f;
 
-    private const float FAIL_DURATION = 0.2f;    
+    private const float FAIL_DURATION = 0.2f;
 
     private int _scaleTweenID;
 
@@ -24,14 +24,14 @@ public class PlayerScale : MonoBehaviour
 
     private void OnEnable()
     {
-        EventManager.OnLevelFailed.AddListener(FailTween);
-        Player.OnHit.AddListener(HitTween);
+        Enemy.OnDie.AddListener(DieTween);
+        Enemy.OnHit.AddListener(HitTween);
     }
 
     private void OnDisable()
     {
-        EventManager.OnLevelFailed.RemoveListener(FailTween);
-        Player.OnHit.RemoveListener(HitTween);
+        Enemy.OnDie.RemoveListener(DieTween);
+        Enemy.OnHit.RemoveListener(HitTween);
     }
 
     private void HitTween()
@@ -40,9 +40,9 @@ public class PlayerScale : MonoBehaviour
         body.DOPunchScale(Vector3.one * PUNCH_STRENGTH, PUNCH_DURATION, 1).SetId(_scaleTweenID);
     }
 
-    private void FailTween() 
+    private void DieTween()
     {
         DOTween.Complete(_scaleTweenID);
-        body.DOScale(Vector3.zero, FAIL_DURATION).SetId(_scaleTweenID);
+        body.DOScale(Vector3.zero, FAIL_DURATION).SetId(_scaleTweenID).OnComplete(() => Destroy(gameObject));
     }
 }

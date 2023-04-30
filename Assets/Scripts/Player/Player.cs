@@ -25,8 +25,11 @@ public class Player : MonoBehaviour, IEnemyTarget
 
     private const int FATAL_HEALTH = 0;
 
+    [HideInInspector]
     public UnityEvent OnInitialized = new();
-    public UnityEvent OnHit = new();    
+    [HideInInspector]
+    public UnityEvent OnHit = new();
+    [HideInInspector]
     public UnityEvent OnHealthChanged = new();
 
     private void Start()
