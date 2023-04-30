@@ -14,6 +14,10 @@ public class BeginningState : EnemyStateBase
     public override IEnumerator EnterState()
     {
         StateMachine.EnemyAnimator.Idle();
+
+        if (GameManager.Instance.IsLevelFailed)
+            yield break;
+
         yield return CHASING_WAIT;
 
         while (IsActive) 
