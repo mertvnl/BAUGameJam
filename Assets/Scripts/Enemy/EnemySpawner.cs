@@ -33,9 +33,14 @@ public class EnemySpawner : MonoBehaviour, IEnemySpawner
         SetMarketAlpha(0);
     }
 
-    private void Start()
+    private void OnEnable()
     {
         EnemySpawnerManager.Instance.AddSpawner(this);
+    }
+
+    private void OnDisable()
+    {
+        EnemySpawnerManager.Instance.RemoveSpawner(this);
     }
 
     private void CompleteSpawn() 
