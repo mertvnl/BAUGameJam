@@ -22,6 +22,7 @@ public class Enemy : MonoBehaviour, IEnemy
     public void Hit(int damage)
     {
         //TODO: Hit logic
+        Die();
     }  
 
     public void SetTarget(IEnemyTarget target) 
@@ -32,6 +33,8 @@ public class Enemy : MonoBehaviour, IEnemy
     private void Die() 
     {
         IsAlive = false;
-        EnemyManager.Instance.RemoveEnemy(this);    
+        EnemyManager.Instance.RemoveEnemy(this);
+        PlayerLevelManager.Instance.IncreaseExperience(EnemyData.Experience);
+        Destroy(gameObject);
     }
 }

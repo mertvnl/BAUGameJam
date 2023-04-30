@@ -20,7 +20,7 @@ public class Player : MonoBehaviour, IEnemyTarget
     }
     [field: SerializeField] public PlayerData PlayerData { get; private set; }
     public bool IsControlable { get; private set; }
-    public bool IsAlive { get; private set; }
+    public bool IsAlive { get; private set; } = true;
     public Transform T => transform;
 
     private const int FATAL_HEALTH = 0;

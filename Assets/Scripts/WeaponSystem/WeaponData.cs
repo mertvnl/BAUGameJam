@@ -7,6 +7,7 @@ public class WeaponData : ScriptableObject
 {
     public string Name;
     public WeaponTypes WeaponType;
+    public GameObject Prefab;
     public float FireRate;
     public int Damage;
     public Sprite Icon;

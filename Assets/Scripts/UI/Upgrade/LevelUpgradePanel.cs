@@ -15,17 +15,18 @@ public class LevelUpgradePanel : FadePanelBase
     private void Start()
     {
         Initialize();
-        CreateRandomUpgrades();
     }
 
     private void OnEnable()
     {
         UpgradeManager.Instance.OnStatUpgraded.AddListener((x) => HidePanelWithFade(0.25f));
+        PlayerLevelManager.Instance.OnPlayerLevelUp.AddListener(()=> ShowPanelWithFade(0.25f));
     }
 
     private void OnDisable()
     {
         UpgradeManager.Instance.OnStatUpgraded.RemoveListener((x) => HidePanelWithFade(0.25f));
+        PlayerLevelManager.Instance.OnPlayerLevelUp.RemoveListener(() => ShowPanelWithFade(0.25f));
     }
 
     private void Initialize()
@@ -65,6 +66,13 @@ public class LevelUpgradePanel : FadePanelBase
     public override void ShowPanelWithFade(float duration, float delay = 0)
     {
         CreateRandomUpgrades();
+        Time.timeScale = 0;
         base.ShowPanelWithFade(duration, delay);
+    }
+
+    public override void HidePanelWithFade(float duration, float delay = 0)
+    {
+        Time.timeScale = 1;
+        base.HidePanelWithFade(duration, delay);
     }
 }
