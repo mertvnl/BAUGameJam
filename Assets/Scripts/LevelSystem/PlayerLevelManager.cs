@@ -21,6 +21,16 @@ public class PlayerLevelManager : Singleton<PlayerLevelManager>
         ResetLevel();
     }
 
+    private void OnEnable()
+    {
+        EventManager.OnLevelRestarted.AddListener(ResetLevel);
+    }
+
+    private void OnDisable()
+    {
+        EventManager.OnLevelRestarted.RemoveListener(ResetLevel);
+    }
+
     public void IncreaseExperience(float exp)
     {
         CurrentExperience += exp;

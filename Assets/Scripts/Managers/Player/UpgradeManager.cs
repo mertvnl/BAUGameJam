@@ -17,6 +17,16 @@ public class UpgradeManager : Singleton<UpgradeManager>
         ResetAllUpgrades();
     }
 
+    private void OnEnable()
+    {
+        EventManager.OnLevelRestarted.AddListener(ResetAllUpgrades);
+    }
+
+    private void OnDisable()
+    {
+        EventManager.OnLevelRestarted.RemoveListener(ResetAllUpgrades);
+    }
+
     public UpgradeData GetUpgradeByType(UpgradeType upgradeType)
     {
         return Upgrades.FirstOrDefault(x => x.UpgradeType == upgradeType);
