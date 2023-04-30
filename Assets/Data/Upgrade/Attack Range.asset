@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UpgradeName: Attack Range
   UpgradeType: 40
-  DefaultUpgradeValue: 0
+  DefaultUpgradeValue: 5
   OfferMaxValue: 10
   OfferMinValue: 1
   UpgradeIcon: {fileID: 0}

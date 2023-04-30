@@ -79,9 +79,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pools:
-  - PoolID: Powerup
-    Prefab: {fileID: 0}
-    InitialSize: 0
+  - PoolID: Bullet
+    Prefab: {fileID: 2256272279061796976, guid: c5a291d91ae14ec4c8dcb0f30286b1da,
+      type: 3}
+    InitialSize: 25
 --- !u!114 &3555412444667812584
 MonoBehaviour:
   m_ObjectHideFlags: 0

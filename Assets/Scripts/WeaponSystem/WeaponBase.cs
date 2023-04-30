@@ -12,6 +12,7 @@ public abstract class WeaponBase : MonoBehaviour, IWeapon
 
     public virtual void Fire()
     {
-        
+        Bullet bullet = PoolingSystem.Instance.InstantiateFromPool("Bullet", FirePoint.position, Quaternion.identity).GetComponent<Bullet>();
+        bullet.Initialize(WeaponData, FirePoint);
     }
 }
