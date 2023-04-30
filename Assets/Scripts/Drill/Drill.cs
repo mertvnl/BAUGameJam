@@ -23,6 +23,7 @@ public class Drill : MonoBehaviour, IEnemyTarget
     private const int FATAL_HEALTH = 0;
 
     private int _scaleTweenID;
+    private Coroutine drillRoutine;
 
     private void Awake()
     {
@@ -30,6 +31,17 @@ public class Drill : MonoBehaviour, IEnemyTarget
         CurrentHealth = MaxHealth;
         UpdateHealthBar();
         EnemyTargetManager.Instance.AddEnemyTarget(this);
+        drillRoutine = StartCoroutine(DrillMoneyGain()); 
+    }
+
+    private IEnumerator DrillMoneyGain()
+    {
+        while (IsAlive)
+        {
+            FloatingText fText = PoolingSystem.Instance.InstantiateFromPool("FloatingText", transform.position + Vector3.up, Quaternion.identity).GetComponent<FloatingText>();
+            fText.Initialize("+$" + Random.Range(5,25), Color.green);
+            yield return new WaitForSeconds(1f);
+        }
     }
 
     public void Hit(float damage)
@@ -44,6 +56,8 @@ public class Drill : MonoBehaviour, IEnemyTarget
         if (CurrentHealth <= FATAL_HEALTH)
         {
             IsAlive = false;
+            if (drillRoutine != null)
+                StopCoroutine(drillRoutine);
             FailTween();
             EnemyTargetManager.Instance.RemoveEnemyTarget(this);
             EventManager.OnLevelFailed.Invoke();

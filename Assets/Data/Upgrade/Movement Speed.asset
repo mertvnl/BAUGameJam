@@ -17,5 +17,5 @@ MonoBehaviour:
   DefaultUpgradeValue: 0
   OfferMaxValue: 10
   OfferMinValue: 1
-  UpgradeIcon: {fileID: 0}
-  UpgradeDescription: Aight
+  UpgradeIcon: {fileID: 21300000, guid: af226ef8e3805704db654f165bbf86ed, type: 3}
+  UpgradeDescription: Increases movement speed.

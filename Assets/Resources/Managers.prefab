@@ -90,6 +90,9 @@ MonoBehaviour:
     Prefab: {fileID: 9158635742410941698, guid: f7832ade54d5b467dac4dd5e954ead09,
       type: 3}
     InitialSize: 5
+  - PoolID: FloatingText
+    Prefab: {fileID: 971922784208603514, guid: 20d335507e0f79843bc6e022ee7e5a43, type: 3}
+    InitialSize: 25
 --- !u!114 &3555412444667812584
 MonoBehaviour:
   m_ObjectHideFlags: 0

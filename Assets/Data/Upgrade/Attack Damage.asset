@@ -17,5 +17,5 @@ MonoBehaviour:
   DefaultUpgradeValue: 0
   OfferMaxValue: 10
   OfferMinValue: 1
-  UpgradeIcon: {fileID: 0}
-  UpgradeDescription: Aight
+  UpgradeIcon: {fileID: 21300000, guid: bd53c69dcf34e4777844eacc19f98648, type: 3}
+  UpgradeDescription: Powers up your damage.

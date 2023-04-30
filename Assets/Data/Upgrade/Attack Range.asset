@@ -17,5 +17,5 @@ MonoBehaviour:
   DefaultUpgradeValue: 5
   OfferMaxValue: 10
   OfferMinValue: 1
-  UpgradeIcon: {fileID: 0}
-  UpgradeDescription: Aight
+  UpgradeIcon: {fileID: 21300000, guid: 47b101b644a527f4493c658ac6c00d76, type: 3}
+  UpgradeDescription: Increases attack range.
