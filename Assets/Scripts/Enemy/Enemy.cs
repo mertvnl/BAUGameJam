@@ -34,6 +34,8 @@ public class Enemy : MonoBehaviour, IEnemy
             return;
 
         CurrentHealth -= damage;
+        FloatingText fText = PoolingSystem.Instance.InstantiateFromPool("FloatingText", transform.position + Vector3.up, Quaternion.identity).GetComponent<FloatingText>();
+        fText.Initialize("-" + damage, Color.white);
         if (CurrentHealth <= FATAL_HEALTH)
             Die();
 

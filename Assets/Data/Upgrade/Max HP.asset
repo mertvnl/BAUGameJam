@@ -17,5 +17,5 @@ MonoBehaviour:
   DefaultUpgradeValue: 10
   OfferMaxValue: 10
   OfferMinValue: 1
-  UpgradeIcon: {fileID: 0}
-  UpgradeDescription: Aight
+  UpgradeIcon: {fileID: 21300000, guid: 7d711f52724cd41018a43d23149eac2b, type: 3}
+  UpgradeDescription: Increases maximum health.
