@@ -38,6 +38,11 @@ public class PlayerWeaponController : MonoBehaviour
             return;
 
         weaponSpawnPoint.right =  weaponSpawnPoint.position - _closestEnemy.T.position;
+
+        if (weaponSpawnPoint.localEulerAngles.z > 90 && weaponSpawnPoint.localEulerAngles.z < 270)
+            weaponSpawnPoint.localScale = new Vector3(weaponSpawnPoint.localScale.x, -1f, weaponSpawnPoint.localScale.z);
+        else
+            weaponSpawnPoint.localScale = new Vector3(weaponSpawnPoint.localScale.x, 1f, weaponSpawnPoint.localScale.z);
     }
 
     private void HandleFireRate()
