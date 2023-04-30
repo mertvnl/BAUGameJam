@@ -45,6 +45,11 @@ public class Enemy : MonoBehaviour, IEnemy
         LastTarget = target;
     }
 
+    private void OnDisable()
+    {
+        EnemyManager.Instance.RemoveEnemy(this);
+    }
+
     private void Die() 
     {
         IsAlive = false;

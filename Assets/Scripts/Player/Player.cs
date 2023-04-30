@@ -35,11 +35,13 @@ public class Player : MonoBehaviour, IEnemyTarget
     private void OnEnable()
     {
         PlayerLevelManager.Instance.OnPlayerLevelUp.AddListener(() => PoolingSystem.Instance.InstantiateFromPool("LevelUp", transform.position + Vector3.down / 2, Quaternion.identity));
+        EventManager.OnLevelFailed.AddListener(Die);
     }
 
     private void OnDisable()
     {
         PlayerLevelManager.Instance.OnPlayerLevelUp.RemoveListener(() => PoolingSystem.Instance.InstantiateFromPool("LevelUp", transform.position + Vector3.down / 2, Quaternion.identity));
+        EventManager.OnLevelFailed.RemoveListener(Die);
     }
 
     private void Start()
@@ -58,11 +60,14 @@ public class Player : MonoBehaviour, IEnemyTarget
 
     public void Die()
     {
+        if (!IsAlive)
+            return;
+
         IsControlable = false;
         IsAlive = false;
 
         EnemyTargetManager.Instance.RemoveEnemyTarget(this);
-        EventManager.OnLevelFailed.Invoke();
+        GameManager.Instance.TriggerFail();
     }
 
     public void Hit(float damage)

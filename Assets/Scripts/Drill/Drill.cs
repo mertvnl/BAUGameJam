@@ -53,7 +53,7 @@ public class Drill : MonoBehaviour, IEnemyTarget
             IsAlive = false;
             FailTween();
             EnemyTargetManager.Instance.RemoveEnemyTarget(this);
-            EventManager.OnLevelFailed.Invoke();
+            GameManager.Instance.TriggerFail();
         }
     }
 

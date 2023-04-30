@@ -5,5 +5,6 @@ using UnityEngine.Events;
 
 public static class EventManager 
 {
-    public static UnityEvent OnLevelFailed = new();    
+    public static UnityEvent OnLevelFailed = new();
+    public static UnityEvent OnLevelRestarted = new();
 }
