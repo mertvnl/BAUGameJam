@@ -10,6 +10,7 @@ public class PlayerWeaponController : MonoBehaviour
     public Player Player => _player ??= GetComponent<Player>();
 
     [SerializeField] private WeaponData defaultWeaponData;
+    [SerializeField] private Transform weaponHolder;
     [SerializeField] private Transform weaponSpawnPoint;
 
     private IEnemy _closestEnemy;
@@ -32,17 +33,17 @@ public class PlayerWeaponController : MonoBehaviour
 
     private void HandleWeaponRotation()
     {
-        _closestEnemy = EnemyManager.Instance.GetClosestEnemy(Player.transform.position, UpgradeManager.Instance.GetUpgradeByType(UpgradeType.AttackRange).GetCurrentValue());
+        _closestEnemy = EnemyManager.Instance.GetClosestEnemy(Player.transform.position, GetRange());
 
         if (_closestEnemy == null)
             return;
 
-        weaponSpawnPoint.right =  weaponSpawnPoint.position - _closestEnemy.T.position;
+        weaponHolder.right =  weaponHolder.position - _closestEnemy.T.position;
 
-        if (weaponSpawnPoint.localEulerAngles.z > 90 && weaponSpawnPoint.localEulerAngles.z < 270)
-            weaponSpawnPoint.localScale = new Vector3(weaponSpawnPoint.localScale.x, -1f, weaponSpawnPoint.localScale.z);
+        if (weaponHolder.localEulerAngles.z > 90 && weaponHolder.localEulerAngles.z < 270)
+            weaponHolder.localScale = new Vector3(weaponHolder.localScale.x, -1f, weaponHolder.localScale.z);
         else
-            weaponSpawnPoint.localScale = new Vector3(weaponSpawnPoint.localScale.x, 1f, weaponSpawnPoint.localScale.z);
+            weaponHolder.localScale = new Vector3(weaponHolder.localScale.x, 1f, weaponHolder.localScale.z);
     }
 
     private void HandleFireRate()
@@ -67,10 +68,17 @@ public class PlayerWeaponController : MonoBehaviour
         }
     }
 
+    private float GetRange() 
+    {
+        float defaultRange = UpgradeManager.Instance.GetUpgradeByType(UpgradeType.AttackRange).DefaultUpgradeValue;
+        float bonusRange = defaultRange + defaultRange * UpgradeManager.Instance.GetUpgradeByType(UpgradeType.AttackRange).GetCurrentValue() / 100f;
+        return defaultRange + bonusRange;
+    }
+
     private float GetFireRate() 
     {
         float bonusFireRate = CurrentWeapon.WeaponData.FireRate * UpgradeManager.Instance.GetUpgradeByType(UpgradeType.AttackSpeed).GetCurrentValue() / 100f;
         float fireRate = CurrentWeapon.WeaponData.FireRate + bonusFireRate;
-        return fireRate;
+        return 1f / fireRate;
     }
 }

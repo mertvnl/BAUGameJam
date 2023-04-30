@@ -6,9 +6,7 @@ public abstract class WeaponBase : MonoBehaviour, IWeapon
 {
     [field: SerializeField] public WeaponData WeaponData { get; private set; }
 
-    [field: SerializeField] public Transform FirePoint { get; private set; }
-
-    protected float UpgradedFireRate => (WeaponData.FireRate + WeaponData.FireRate * UpgradeManager.Instance.GetUpgradeByType(UpgradeType.AttackSpeed).GetCurrentValue()) / 100;
+    [field: SerializeField] public Transform FirePoint { get; private set; }    
 
     public virtual void Fire()
     {
