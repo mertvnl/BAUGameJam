@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemySpawnerManager : Singleton<EnemySpawnerManager>
 {
+    public bool IsActive { get; private set; } = true;
     public float LastSpawnTime { get; private set; }
     public List<IEnemySpawner> Spawners { get; private set; } = new();
 
@@ -25,13 +26,26 @@ public class EnemySpawnerManager : Singleton<EnemySpawnerManager>
         Spawners.Remove(spawner);
     }
 
-    public void Update() 
+    private void OnEnable()
+    {
+        EventManager.OnLevelFailed.AddListener(() => IsActive = false);
+    }
+
+    private void OnDisable()
+    {
+        EventManager.OnLevelFailed.RemoveListener(() => IsActive = false);
+    }
+
+    private void Update() 
     {
         CheckSpawners();
     }
 
     private void CheckSpawners() 
     {
+        if (!IsActive)
+            return;
+
         if (Spawners.Count == 0)
             return;
 
