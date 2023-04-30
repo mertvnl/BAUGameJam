@@ -65,7 +65,7 @@ public abstract class FadePanelBase : MonoBehaviour
     protected void FadeTween(float endValue, float duration, float delay, Action onComplete = null)
     {
         DOTween.Kill(_fadeTweenID);
-        CanvasGroup.DOFade(endValue, duration).SetId(_fadeTweenID).SetDelay(delay).SetEase(Ease.Linear).OnComplete(() =>
+        CanvasGroup.DOFade(endValue, duration).SetId(_fadeTweenID).SetUpdate(true).SetDelay(delay).SetEase(Ease.Linear).OnComplete(() =>
         {
             onComplete?.Invoke();
         });

@@ -15,7 +15,7 @@ MonoBehaviour:
   MaxHealth: 10
   Damage: 3
   MovementSpeed: 2
-  Experience: 5
+  Experience: 50
   AttackRange: 2
   AttackCooldown: 2
   EnemyPrefab: {fileID: 4791382461671495164, guid: d0590cdf761f55c4584e25f970d59e98,
