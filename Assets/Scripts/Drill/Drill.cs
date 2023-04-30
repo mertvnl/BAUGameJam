@@ -7,9 +7,7 @@ using UnityEngine.UI;
 public class Drill : MonoBehaviour, IEnemyTarget
 {
     public bool IsAlive { get; private set; } = true;
-
     public Transform T => transform;
-
     public float CurrentHealth { get; private set; }
     private int MaxHealth => UpgradeManager.Instance.GetUpgradeByType(UpgradeType.MaxHP).GetCurrentValue();
 
@@ -28,8 +26,17 @@ public class Drill : MonoBehaviour, IEnemyTarget
     {
         _scaleTweenID = GetInstanceID();
         CurrentHealth = MaxHealth;
-        UpdateHealthBar();
+        UpdateHealthBar();        
+    }
+
+    private void OnEnable()
+    {
         EnemyTargetManager.Instance.AddEnemyTarget(this);
+    }
+
+    private void OnDisable()
+    {
+        EnemyTargetManager.Instance.RemoveEnemyTarget(this);
     }
 
     public void Hit(float damage)
