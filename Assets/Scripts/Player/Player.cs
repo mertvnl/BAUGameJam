@@ -55,7 +55,7 @@ public class Player : MonoBehaviour, IEnemyTarget
         EventManager.OnLevelFailed.Invoke();
     }
 
-    public void Hit(int damage)
+    public void Hit(float damage)
     {
         if (!IsAlive)
             return;

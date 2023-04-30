@@ -26,7 +26,13 @@ public class PlayerMovement : MonoBehaviour
             return;
 
         Vector2 direction = Input.InputXY.normalized;
+        Rigidbody.MovePosition(GetMovementSpeed() * Time.fixedDeltaTime * direction + Rigidbody.position);
+    }
 
-        Rigidbody.MovePosition(Player.PlayerData.DefaultSpeed * Time.fixedDeltaTime * direction + Rigidbody.position);
+    private float GetMovementSpeed() 
+    {
+        float speedBonus = Player.PlayerData.DefaultSpeed * UpgradeManager.Instance.GetUpgradeByType(UpgradeType.MovementSpeed).GetCurrentValue() / 100f;
+        float movementSpeed = Player.PlayerData.DefaultSpeed + speedBonus;
+        return movementSpeed;
     }
 }

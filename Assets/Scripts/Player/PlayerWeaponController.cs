@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerWeaponController : MonoBehaviour
 {
+    public IWeapon CurrentWeapon { get; private set; }
+
     private Player _player;
     public Player Player => _player ??= GetComponent<Player>();
 
@@ -11,8 +13,6 @@ public class PlayerWeaponController : MonoBehaviour
     [SerializeField] private Transform weaponSpawnPoint;
 
     private IEnemy _closestEnemy;
-
-    public IWeapon CurrentWeapon { get; private set; }
 
     private void Start()
     {
@@ -60,10 +60,17 @@ public class PlayerWeaponController : MonoBehaviour
             if (_closestEnemy != null)
             {
                 CurrentWeapon.Fire();
-                yield return new WaitForSeconds(CurrentWeapon.WeaponData.FireRate);
+                yield return new WaitForSeconds(GetFireRate());
             }
 
             yield return null;
         }
+    }
+
+    private float GetFireRate() 
+    {
+        float bonusFireRate = CurrentWeapon.WeaponData.FireRate * UpgradeManager.Instance.GetUpgradeByType(UpgradeType.AttackSpeed).GetCurrentValue() / 100f;
+        float fireRate = CurrentWeapon.WeaponData.FireRate + bonusFireRate;
+        return fireRate;
     }
 }
